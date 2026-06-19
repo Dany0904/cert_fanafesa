@@ -18,7 +18,7 @@ class signer_manager {
 
     public static function create(
         string $fullname,
-        string $position
+        string $role
     ) {
 
         global $DB;
@@ -26,7 +26,7 @@ class signer_manager {
         $record = new \stdClass();
 
         $record->fullname = $fullname;
-        $record->position = $position;
+        $record->role = $role;
         $record->active = 1;
         $record->timecreated = time();
         $record->timemodified = time();
@@ -36,5 +36,45 @@ class signer_manager {
             $record
         );
     }
+
+    public static function save_signature(
+        int $signerid,
+        int $draftitemid
+    ) {
+
+        $context = \context_system::instance();
+
+        file_save_draft_area_files(
+            $draftitemid,
+            $context->id,
+            'local_cert_fanafesa',
+            'signature',
+            $signerid,
+            [
+                'subdirs' => 0,
+                'maxfiles' => 1
+            ]
+        );
+    }
+
+    public static function has_signature(
+        int $signerid
+    ): bool {
+
+        $context = \context_system::instance();
+
+        $fs = get_file_storage();
+
+        $files = $fs->get_area_files(
+            $context->id,
+            'local_cert_fanafesa',
+            'signature',
+            $signerid,
+            'id',
+            false
+        );
+
+        return !empty($files);
+}
 
 }

@@ -23,10 +23,10 @@
                        LENGTH="255"
                        NOTNULL="true"/>
 
-                <FIELD NAME="position"
-                       TYPE="char"
-                       LENGTH="255"
-                       NOTNULL="true"/>
+                <FIELD NAME="role"
+                     TYPE="char"
+                     LENGTH="50"
+                     NOTNULL="true"/>
 
                 <FIELD NAME="active"
                        TYPE="int"

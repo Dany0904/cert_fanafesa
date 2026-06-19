@@ -30,20 +30,32 @@ class signer_form extends \moodleform {
         );
 
         $mform->addElement(
-            'text',
-            'position',
-            'Puesto'
-        );
-
-        $mform->setType(
-            'position',
-            PARAM_TEXT
+            'select',
+            'role',
+            'Tipo de firmante',
+            [
+                'instructor'   => 'Instructor o tutor',
+                'patron'       => 'Patrón o representante legal',
+                'trabajadores' => 'Representante de los trabajadores'
+            ]
         );
 
         $mform->addRule(
-            'position',
+            'role',
             null,
             'required'
+        );
+
+        $mform->addElement(
+            'filemanager',
+            'signature',
+            'Firma',
+            null,
+            [
+                'subdirs' => 0,
+                'maxfiles' => 1,
+                'accepted_types' => ['.png', '.jpg', '.jpeg']
+            ]
         );
 
         $this->add_action_buttons(

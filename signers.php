@@ -27,9 +27,15 @@ $form = new \local_cert_fanafesa\form\signer_form();
 
 if ($data = $form->get_data()) {
 
-    \local_cert_fanafesa\signer_manager::create(
-        $data->fullname,
-        $data->position
+    $signerid =
+        \local_cert_fanafesa\signer_manager::create(
+            $data->fullname,
+            $data->role
+        );
+
+    \local_cert_fanafesa\signer_manager::save_signature(
+        $signerid,
+        $data->signature
     );
 
     redirect(
@@ -53,17 +59,28 @@ $table = new html_table();
 
 $table->head = [
     'Nombre',
-    'Puesto'
+    'Tipo',
+    'Firma'
 ];
 
 foreach ($records as $record) {
 
     $table->data[] = [
+
         $record->fullname,
-        $record->position
+
+        get_string(
+            $record->role,
+            'local_cert_fanafesa'
+        ),
+
+        \local_cert_fanafesa\signer_manager::has_signature(
+            $record->id
+        )
+            ? 'Sí'
+            : 'No'
     ];
 }
-
 echo html_writer::table($table);
 
 echo $OUTPUT->footer();
