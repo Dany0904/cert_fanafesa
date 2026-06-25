@@ -56,6 +56,58 @@
 
         </TABLE>
 
+        <TABLE NAME="local_cert_fanafesa_course">
+
+              <FIELDS>
+
+                     <FIELD NAME="id"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"
+                            SEQUENCE="true"/>
+
+                     <FIELD NAME="courseid"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"/>
+
+                     <FIELD NAME="instructorid"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"/>
+
+                     <FIELD NAME="patronid"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"/>
+
+                     <FIELD NAME="trabajadoresid"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"/>
+
+                     <FIELD NAME="timecreated"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"/>
+
+                     <FIELD NAME="timemodified"
+                            TYPE="int"
+                            LENGTH="10"
+                            NOTNULL="true"/>
+
+              </FIELDS>
+
+              <KEYS>
+
+                     <KEY NAME="primary"
+                     TYPE="primary"
+                     FIELDS="id"/>
+
+              </KEYS>
+
+              </TABLE>
+
     </TABLES>
 
 </XMLDB>

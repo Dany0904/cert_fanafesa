@@ -60,10 +60,71 @@ $table = new html_table();
 $table->head = [
     'Nombre',
     'Tipo',
-    'Firma'
+    'Firma',
+    'Estado',
+    'Acciones'
 ];
 
 foreach ($records as $record) {
+
+    $signaturehtml = '-';
+
+    $url =
+        \local_cert_fanafesa\signer_manager::get_signature_url(
+            $record->id
+        );
+
+    if ($url) {
+
+        $signaturehtml = html_writer::empty_tag(
+            'img',
+            [
+                'src' => $url,
+                'style' => '
+                    max-height:70px;
+                    max-width:200px;
+                    border:1px solid #ccc;
+                    padding:4px;
+                    background:white;
+                '
+            ]
+        );
+    }
+
+    $estado =
+        $record->active
+            ? 'Activo'
+            : 'Inactivo';
+
+    $editurl = new moodle_url(
+        '/local/cert_fanafesa/edit_signer.php',
+        [
+            'id' => $record->id
+        ]
+    );
+
+    $toggleurl = new moodle_url(
+        '/local/cert_fanafesa/toggle_signer.php',
+        [
+            'id' => $record->id,
+            'active' => $record->active ? 0 : 1
+        ]
+    );
+
+    $actions =
+        html_writer::link(
+            $editurl,
+            'Editar'
+        );
+
+    $actions .= ' | ';
+
+    $actions .= html_writer::link(
+        $toggleurl,
+        $record->active
+            ? 'Desactivar'
+            : 'Activar'
+        );
 
     $table->data[] = [
 
@@ -74,13 +135,16 @@ foreach ($records as $record) {
             'local_cert_fanafesa'
         ),
 
-        \local_cert_fanafesa\signer_manager::has_signature(
-            $record->id
-        )
-            ? 'Sí'
-            : 'No'
+        $signaturehtml,
+
+        $estado,
+
+        $actions
     ];
 }
+
+$table->attributes['class'] = 'generaltable';
+
 echo html_writer::table($table);
 
 echo $OUTPUT->footer();

@@ -13,6 +13,16 @@ class signer_form extends \moodleform {
         $mform = $this->_form;
 
         $mform->addElement(
+            'hidden',
+            'id'
+        );
+
+        $mform->setType(
+            'id',
+            PARAM_INT
+        );
+
+        $mform->addElement(
             'text',
             'fullname',
             'Nombre completo'

@@ -75,6 +75,111 @@ class signer_manager {
         );
 
         return !empty($files);
-}
+    }
+
+    public static function get_signature_url(
+        int $signerid
+    ): ?string {
+
+        $context = \context_system::instance();
+
+        $fs = get_file_storage();
+
+        $files = $fs->get_area_files(
+            $context->id,
+            'local_cert_fanafesa',
+            'signature',
+            $signerid,
+            'id',
+            false
+        );
+
+        if (empty($files)) {
+            return null;
+        }
+
+        $file = reset($files);
+
+        return \moodle_url::make_pluginfile_url(
+            $file->get_contextid(),
+            $file->get_component(),
+            $file->get_filearea(),
+            $file->get_itemid(),
+            $file->get_filepath(),
+            $file->get_filename()
+        )->out(false);
+    }
+
+    public static function update(
+        int $id,
+        string $fullname,
+        string $role
+    ) {
+
+        global $DB;
+
+        $record = new \stdClass();
+
+        $record->id = $id;
+        $record->fullname = $fullname;
+        $record->role = $role;
+        $record->timemodified = time();
+
+        return $DB->update_record(
+            'local_cert_fanafesa_signers',
+            $record
+        );
+    }
+
+    public static function get(
+        int $id
+    ) {
+
+        global $DB;
+
+        return $DB->get_record(
+            'local_cert_fanafesa_signers',
+            [
+                'id' => $id
+            ],
+            '*',
+            MUST_EXIST
+        );
+    }
+
+    public static function set_active(
+        int $id,
+        int $active
+    ) {
+
+        global $DB;
+
+        $record = new \stdClass();
+
+        $record->id = $id;
+        $record->active = $active;
+        $record->timemodified = time();
+
+        return $DB->update_record(
+            'local_cert_fanafesa_signers',
+            $record
+        );
+    }
+
+    public static function get_by_role(
+        string $role
+    ) {
+
+        global $DB;
+
+        return $DB->get_records(
+            'local_cert_fanafesa_signers',
+            [
+                'role' => $role,
+                'active' => 1
+            ],
+            'fullname ASC'
+        );
+    }
 
 }
