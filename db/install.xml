@@ -56,7 +56,8 @@
 
         </TABLE>
 
-        <TABLE NAME="local_cert_fanafesa_course">
+        <TABLE NAME="local_cert_fanafesa_course"
+              COMMENT="Configuracion de firmantes por curso">
 
               <FIELDS>
 

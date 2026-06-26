@@ -1,0 +1,127 @@
+{{#companylogo}}
+
+<p align="center">
+
+<img src="{{companylogo}}" width="220" />
+
+</p>
+
+{{/companylogo}}
+
+<h2>DEBUG CERTIFICATE DATA</h2>
+
+<table width="100%" border="1" cellpadding="6">
+
+<tr>
+    <td><strong>Campo</strong></td>
+    <td><strong>Valor</strong></td>
+</tr>
+
+<tr>
+    <td>Nombre completo</td>
+    <td>{{fullname}}</td>
+</tr>
+
+<tr>
+    <td>CURP</td>
+    <td>{{curp}}</td>
+</tr>
+
+<tr>
+    <td>Puesto</td>
+    <td>{{puesto}}</td>
+</tr>
+
+<tr>
+    <td>Ocupación</td>
+    <td>{{ocupacion}}</td>
+</tr>
+
+<tr>
+    <td>Curso</td>
+    <td>{{coursename}}</td>
+</tr>
+
+<tr>
+    <td>Duración</td>
+    <td>{{duracion}}</td>
+</tr>
+
+<tr>
+    <td>Periodo inicio</td>
+    <td>{{periodoinicio}}</td>
+</tr>
+
+<tr>
+    <td>Periodo final</td>
+    <td>{{periodofinal}}</td>
+</tr>
+
+<tr>
+    <td>Área temática</td>
+    <td>{{areatematica}}</td>
+</tr>
+
+<tr>
+    <td>Instructor</td>
+    <td>{{instructor}}</td>
+</tr>
+
+<tr>
+    <td>Patrón</td>
+    <td>{{patron}}</td>
+</tr>
+
+<tr>
+    <td>Representante trabajadores</td>
+    <td>{{worker}}</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>DEBUG FIRMS (BASE64 IMAGES)</h3>
+
+<table width="100%" border="1" cellpadding="6">
+
+<tr>
+    <td><strong>Instructor signature</strong></td>
+    <td>
+        {{#instructorsignature}}
+            <img src="{{instructorsignature}}" width="120" />
+        {{/instructorsignature}}
+
+        {{^instructorsignature}}
+            <em>Sin firma</em>
+        {{/instructorsignature}}
+    </td>
+</tr>
+
+<tr>
+    <td><strong>Patron signature</strong></td>
+    <td>
+        {{#patronsignature}}
+            <img src="{{patronsignature}}" width="120" />
+        {{/patronsignature}}
+
+        {{^patronsignature}}
+            <em>Sin firma</em>
+        {{/patronsignature}}
+    </td>
+</tr>
+
+<tr>
+    <td><strong>Workers signature</strong></td>
+    <td>
+        {{#workerssignature}}
+            <img src="{{workerssignature}}" width="120" />
+        {{/workerssignature}}
+
+        {{^workerssignature}}
+            <em>Sin firma</em>
+        {{/workerssignature}}
+    </td>
+</tr>
+
+</table>

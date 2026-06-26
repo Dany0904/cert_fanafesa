@@ -182,4 +182,41 @@ class signer_manager {
         );
     }
 
+    public static function get_signature_file(
+        int $signerid
+    ) {
+
+        $context = \context_system::instance();
+
+        $fs = get_file_storage();
+
+        $files = $fs->get_area_files(
+            $context->id,
+            'local_cert_fanafesa',
+            'signature',
+            $signerid,
+            'id',
+            false
+        );
+
+        if (empty($files)) {
+            return null;
+        }
+
+        return reset($files);
+    }
+
+    public static function get_signature_base64(int $signerid): ?string {
+
+        $file = self::get_signature_file($signerid);
+
+        if (!$file) {
+            return null;
+        }
+
+        $content = $file->get_content();
+
+        return 'data:image/png;base64,' . base64_encode($content);
+    }
+
 }
