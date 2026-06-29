@@ -36,24 +36,24 @@ class certificate_data {
         $courseconfig = course_manager::get($courseid);
 
         /*
-         * Firmantes (OBJETOS COMPLETOS)
-         */
-        $instructor = signer_manager::get($courseconfig->instructorid);
-        $patron = signer_manager::get($courseconfig->patronid);
-        $trabajadores = signer_manager::get($courseconfig->trabajadoresid);
+        * Firmantes (OBJETOS COMPLETOS - SAFE MODE)
+        */
+        $instructor = null;
+        $patron = null;
+        $trabajadores = null;
 
-     /*    if (
-            empty($instructorid) ||
-            empty($patronid) ||
-            empty($trabajadoresid)
-        ) {
-
-            throw new \moodle_exception(
-                'missingsigners',
-                'local_cert_fanafesa'
-            );
+        if (!empty($courseconfig->instructorid)) {
+            $instructor = signer_manager::get((int)$courseconfig->instructorid);
         }
- */
+
+        if (!empty($courseconfig->patronid)) {
+            $patron = signer_manager::get((int)$courseconfig->patronid);
+        }
+
+        if (!empty($courseconfig->trabajadoresid)) {
+            $trabajadores = signer_manager::get((int)$courseconfig->trabajadoresid);
+        }
+
         /*
          * Custom fields del curso
          */
@@ -113,9 +113,20 @@ class certificate_data {
             'trabajadores' => $trabajadores->fullname ?? '',
 
             // Firmas (URLs)
-            'instructorsignature' => signer_manager::get_signature_base64($courseconfig->instructorid),
-            'patronsignature' => signer_manager::get_signature_base64($courseconfig->patronid),
-            'workerssignature' => signer_manager::get_signature_base64($courseconfig->trabajadoresid),
+            'instructorsignature' =>
+                !empty($courseconfig->instructorid)
+                    ? signer_manager::get_signature_base64((int)$courseconfig->instructorid)
+                    : '',
+
+            'patronsignature' =>
+                !empty($courseconfig->patronid)
+                    ? signer_manager::get_signature_base64((int)$courseconfig->patronid)
+                    : '',
+
+            'workerssignature' =>
+                !empty($courseconfig->trabajadoresid)
+                    ? signer_manager::get_signature_base64((int)$courseconfig->trabajadoresid)
+                    : '',
 
             'companylogo' => $companyinfo['logo'],
             'empresa' => $empresa,

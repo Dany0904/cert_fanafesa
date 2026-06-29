@@ -45,3 +45,31 @@ function local_cert_fanafesa_pluginfile(
 
     send_stored_file($file);
 }
+
+function local_cert_fanafesa_before_footer() {
+    global $PAGE;
+
+    if ($PAGE->pagetype !== 'mod-customcert-view') {
+        return;
+    }
+
+    $cmid = optional_param('id', 0, PARAM_INT);
+    if (!$cmid) {
+        return;
+    }
+
+    $url = new moodle_url('/local/cert_fanafesa/download.php', [
+        'cmid' => $cmid
+    ]);
+
+    $button = html_writer::div(
+        html_writer::link(
+            $url,
+            'Descargar certificado',
+            ['class' => 'btn btn-success']
+        ),
+        'fanafesa-btn-container'
+    );
+
+    echo $button;
+}

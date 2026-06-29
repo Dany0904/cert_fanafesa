@@ -13,3 +13,6 @@ $string['trabajadores'] = 'Representante de los trabajadores';
 
 $string['missingsigners'] =
     'No es posible generar el certificado porque el curso no tiene configurados todos los firmantes.';
+
+$string['nousersselected'] =
+    'Debe seleccionar al menos un alumno.';

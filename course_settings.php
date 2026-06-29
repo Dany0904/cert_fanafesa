@@ -6,10 +6,11 @@ require_login();
 
 $context = context_system::instance();
 
-$courseid = required_param(
-    'courseid',
-    PARAM_INT
-);
+$courseid = required_param('courseid', PARAM_INT);
+
+if (!$course = get_course($courseid)) {
+    throw new moodle_exception('invalidcourseid');
+}
 
 $course = get_course(
     $courseid
@@ -209,13 +210,279 @@ echo $OUTPUT->heading(
 );
 
 echo html_writer::div(
-    '<strong>Curso:</strong> ' .
-    format_string(
-        $course->fullname
-    ),
+
+    'Seleccione los firmantes que aparecerán en los certificados emitidos para este curso.',
+
     'alert alert-info'
+
+);
+
+/*
+|--------------------------------------------------------------------------
+| Estado actual
+|--------------------------------------------------------------------------
+*/
+
+$completo = false;
+
+if ($config) {
+
+    $completo =
+
+        !empty($config->instructorid)
+
+        &&
+
+        !empty($config->patronid)
+
+        &&
+
+        !empty($config->trabajadoresid);
+
+}
+
+$estado =
+
+    $completo
+
+        ?
+
+        html_writer::span(
+
+            'Configuración completa',
+
+            'badge badge-success'
+
+        )
+
+        :
+
+        html_writer::span(
+
+            'Pendiente de configuración',
+
+            'badge badge-warning'
+
+        );
+
+echo html_writer::start_div(
+    'card mb-4'
+);
+
+echo html_writer::start_div(
+    'card-body'
+);
+
+echo html_writer::tag(
+
+    'h5',
+
+    format_string(
+
+        $course->fullname
+
+    )
+
+);
+
+echo html_writer::div(
+
+    '<strong>ID Curso:</strong> '
+
+    .
+
+    $course->id
+
+);
+
+echo html_writer::div(
+
+    '<strong>Estado:</strong> '
+
+    .
+
+    $estado
+
+);
+
+echo html_writer::end_div();
+
+echo html_writer::end_div();
+
+/*
+|--------------------------------------------------------------------------
+| Firmantes actuales
+|--------------------------------------------------------------------------
+*/
+
+if ($config) {
+
+    $instructor =
+
+        $config->instructorid
+
+            ?
+
+            \local_cert_fanafesa\signer_manager::get(
+
+                $config->instructorid
+
+            )
+
+            : null;
+
+    $patron =
+
+        $config->patronid
+
+            ?
+
+            \local_cert_fanafesa\signer_manager::get(
+
+                $config->patronid
+
+            )
+
+            : null;
+
+    $trabajadores =
+
+        $config->trabajadoresid
+
+            ?
+
+            \local_cert_fanafesa\signer_manager::get(
+
+                $config->trabajadoresid
+
+            )
+
+            : null;
+
+    echo html_writer::start_div(
+        'card mb-4'
+    );
+
+    echo html_writer::start_div(
+        'card-body'
+    );
+
+    echo html_writer::tag(
+
+        'h5',
+
+        'Firmantes asignados'
+
+    );
+
+    echo html_writer::alist([
+
+        '<strong>Instructor:</strong> '
+
+        .
+
+        (
+
+            $instructor->fullname
+
+            ??
+
+            '-'
+
+        ),
+
+        '<strong>Representante patronal:</strong> '
+
+        .
+
+        (
+
+            $patron->fullname
+
+            ??
+
+            '-'
+
+        ),
+
+        '<strong>Representante trabajadores:</strong> '
+
+        .
+
+        (
+
+            $trabajadores->fullname
+
+            ??
+
+            '-'
+
+        )
+
+    ]);
+
+    echo html_writer::end_div();
+
+    echo html_writer::end_div();
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Formulario
+|--------------------------------------------------------------------------
+*/
+
+echo html_writer::start_div(
+    'card'
+);
+
+echo html_writer::start_div(
+    'card-body'
+);
+
+echo html_writer::tag(
+
+    'h4',
+
+    'Asignación de firmantes'
+
 );
 
 $form->display();
+
+echo html_writer::end_div();
+
+echo html_writer::end_div();
+
+/*
+|--------------------------------------------------------------------------
+| Navegación
+|--------------------------------------------------------------------------
+*/
+
+echo html_writer::div(
+
+    html_writer::link(
+
+        new moodle_url(
+
+            '/local/cert_fanafesa/courses.php'
+
+        ),
+
+        '← Volver',
+
+        [
+
+            'class' =>
+
+            'btn btn-light mt-3'
+
+        ]
+
+    )
+
+);
 
 echo $OUTPUT->footer();
