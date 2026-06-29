@@ -23,6 +23,7 @@ class certificate_data {
         $profile = profile_user_record($userid);
 
         $empresa = $profile->empresa ?? '';
+        $companyinfo = self::get_company_info($empresa);
 
         /*
          * Curso
@@ -41,15 +42,51 @@ class certificate_data {
         $patron = signer_manager::get($courseconfig->patronid);
         $trabajadores = signer_manager::get($courseconfig->trabajadoresid);
 
+     /*    if (
+            empty($instructorid) ||
+            empty($patronid) ||
+            empty($trabajadoresid)
+        ) {
 
+            throw new \moodle_exception(
+                'missingsigners',
+                'local_cert_fanafesa'
+            );
+        }
+ */
         /*
          * Custom fields del curso
          */
         $customfields = self::get_course_custom_fields($courseid);
 
+        $lastname = trim($user->lastname ?? '');
+        $firstname = trim($user->firstname ?? '');
+
+        $fullname = trim($lastname . ' ' . $firstname);
+
+        $periodoinicio = !empty($customfields['periodoinicio'])
+            ? userdate((int)$customfields['periodoinicio'], '%d/%m/%Y')
+            : '';
+
+        $periodofinal = !empty($customfields['periodofinal'])
+            ? userdate((int)$customfields['periodofinal'], '%d/%m/%Y')
+            : '';
+
+        [$di, $mi, $ai] = array_pad(
+            explode('/', $periodoinicio),
+            3,
+            ''
+        );
+
+        [$df, $mf, $af] = array_pad(
+            explode('/', $periodofinal),
+            3,
+            ''
+        );
+
         return [
             // Usuario
-            'fullname' => fullname($user),
+            'fullname' => $fullname,
             'curp' => $profile->curp ?? '',
             'puesto' => $profile->puesto ?? '',
             'ocupacion' => $profile->ocupacion ?? '',
@@ -57,13 +94,17 @@ class certificate_data {
             // Curso
             'coursename' => $course->fullname,
             'duracion' => $customfields['duracion'] ?? '',
-            'periodoinicio' => !empty($customfields['periodoinicio'])
-                ? userdate((int)$customfields['periodoinicio'], '%d/%m/%Y')
-                : '',
+            'periodoinicio' => $periodoinicio,
+            'periodofinal' => $periodofinal,
 
-            'periodofinal' => !empty($customfields['periodofinal'])
-                ? userdate((int)$customfields['periodofinal'], '%d/%m/%Y')
-                : '',
+            'inicioanio' => $ai,
+            'iniciomes' => $mi,
+            'iniciodia' => $di,
+
+            'finalanio' => $af,
+            'finalmes' => $mf,
+            'finaldia' => $df,
+
             'areatematica' => $customfields['areatematica'] ?? '',
 
             // Firmantes (texto)
@@ -76,8 +117,9 @@ class certificate_data {
             'patronsignature' => signer_manager::get_signature_base64($courseconfig->patronid),
             'workerssignature' => signer_manager::get_signature_base64($courseconfig->trabajadoresid),
 
-            'companylogo' => self::get_company_logo($empresa),
+            'companylogo' => $companyinfo['logo'],
             'empresa' => $empresa,
+            'rfcempresa' => $companyinfo['rfc'],
         ];
     }
 
@@ -126,39 +168,84 @@ class certificate_data {
         return $fields;
     }
 
-    private static function get_company_logo(string $company): ?string {
+    private static function get_company_info(string $company): array {
 
         global $CFG;
 
-        $logos = [
+        $companies = [
 
-            'FARMACOS ESPECIALIZADOS, S.A. DE C.V.' =>
-                'f_espec.png',
+            'FARMACOS ESPECIALIZADOS, S.A. DE C.V.' => [
 
-            'FARMACOS NACIONALES, S.A. DE C.V.' =>
-                'fanasa.png',
+                'logo' => 'f_espec.png',
 
-            'FEFASA CSC, S.A. DE C.V.' =>
-                'fefasa_csc.png',
+                'rfc' => 'FES-840823-HH0',
 
-            'GRUPO ACTIFARMA, S.A. DE C.V.' =>
-                'actifarma.png',
+            ],
 
-            'LOGISTICA Y DISTRIBUCION 360, S.A. DE C.V.' =>
-                'ld360.png',
+            'FARMACOS NACIONALES, S.A. DE C.V.' => [
+
+                'logo' => 'fanasa.png',
+
+                'rfc' => 'FNA-951220-DA9',
+
+            ],
+
+            'FEFASA CSC, S.A. DE C.V.' => [
+
+                'logo' => 'fefasa_csc.png',
+
+                'rfc' => 'OSO-210414-QC3',
+
+            ],
+
+            'GRUPO ACTIFARMA, S.A. DE C.V.' => [
+
+                'logo' => 'actifarma.png',
+
+                'rfc' => 'GAC-091015-R25',
+
+            ],
+
+            'LOGISTICA Y DISTRIBUCION 360, S.A. DE C.V.' => [
+
+                'logo' => 'ld360.png',
+
+                'rfc' => 'LDT-190625-G71',
+
+            ],
+
         ];
 
-        $filename = $logos[$company] ?? 'default.png';
+        $info = $companies[$company] ?? [
+
+            'logo' => 'default.png',
+
+            'rfc' => '',
+
+        ];
 
         $path = $CFG->dirroot .
             '/local/cert_fanafesa/pix/logos/' .
-            $filename;
+            $info['logo'];
 
-        if (!file_exists($path)) {
-            return null;
+        $logo = null;
+
+        if (file_exists($path)) {
+
+            $logo = 'data:image/png;base64,' .
+                base64_encode(
+                    file_get_contents($path)
+                );
+
         }
 
-        return 'data:image/png;base64,' .
-            base64_encode(file_get_contents($path));
+        return [
+
+            'logo' => $logo,
+
+            'rfc' => $info['rfc'],
+
+        ];
+
     }
 }

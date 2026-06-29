@@ -8,10 +8,23 @@ class certificate_view_builder {
 
     public static function build(array $data): array {
 
+        $curpchars = [];
+
+        $curp = strtoupper($data['curp']);
+
+        for ($i = 0; $i < 18; $i++) {
+
+            $curpchars[] = [
+                'char' => $curp[$i] ?? '',
+                'first' => ($i === 0)
+            ];
+        }
+
         return [
             // datos base
             'fullname' => $data['fullname'],
             'curp' => $data['curp'],
+            'curpchars' => $curpchars,
             'puesto' => $data['puesto'],
             'ocupacion' => $data['ocupacion'],
 
@@ -19,6 +32,13 @@ class certificate_view_builder {
             'duracion' => $data['duracion'],
             'periodoinicio' => $data['periodoinicio'],
             'periodofinal' => $data['periodofinal'],
+            'inicioanio' => $data['inicioanio'],
+            'iniciomes' => $data['iniciomes'],
+            'iniciodia' => $data['iniciodia'],
+
+            'finalanio' => $data['finalanio'],
+            'finalmes' => $data['finalmes'],
+            'finaldia' => $data['finaldia'],
             'areatematica' => $data['areatematica'],
 
             // nombres firmantes
@@ -32,8 +52,8 @@ class certificate_view_builder {
             'workerssignature' => $data['workerssignature'],
 
             'empresa' => $data['empresa'],
-
-            'companylogo' => $data['companylogo']
+            'companylogo' => $data['companylogo'],
+            'rfcempresa' => $data['rfcempresa']
         ];
     }
 }

@@ -1,127 +1,1001 @@
 {{#companylogo}}
 
-<p align="center">
-
-<img src="{{companylogo}}" width="220" />
-
-</p>
-
-{{/companylogo}}
-
-<h2>DEBUG CERTIFICATE DATA</h2>
-
-<table width="100%" border="1" cellpadding="6">
+<table width="100%" cellpadding="0" cellspacing="0">
 
 <tr>
-    <td><strong>Campo</strong></td>
-    <td><strong>Valor</strong></td>
-</tr>
 
-<tr>
-    <td>Nombre completo</td>
-    <td>{{fullname}}</td>
-</tr>
+<td
+    align="center"
+    height="88"
+    valign="middle">
 
-<tr>
-    <td>CURP</td>
-    <td>{{curp}}</td>
-</tr>
+    <img
+        src="{{companylogo}}"
+        width="180" />
 
-<tr>
-    <td>Puesto</td>
-    <td>{{puesto}}</td>
-</tr>
+</td>
 
-<tr>
-    <td>Ocupación</td>
-    <td>{{ocupacion}}</td>
-</tr>
-
-<tr>
-    <td>Curso</td>
-    <td>{{coursename}}</td>
-</tr>
-
-<tr>
-    <td>Duración</td>
-    <td>{{duracion}}</td>
-</tr>
-
-<tr>
-    <td>Periodo inicio</td>
-    <td>{{periodoinicio}}</td>
-</tr>
-
-<tr>
-    <td>Periodo final</td>
-    <td>{{periodofinal}}</td>
-</tr>
-
-<tr>
-    <td>Área temática</td>
-    <td>{{areatematica}}</td>
-</tr>
-
-<tr>
-    <td>Instructor</td>
-    <td>{{instructor}}</td>
-</tr>
-
-<tr>
-    <td>Patrón</td>
-    <td>{{patron}}</td>
-</tr>
-
-<tr>
-    <td>Representante trabajadores</td>
-    <td>{{worker}}</td>
 </tr>
 
 </table>
 
-<hr>
+{{/companylogo}}
 
-<h3>DEBUG FIRMS (BASE64 IMAGES)</h3>
+<h3 align="center">FORMATO DC-3</h3>
+<h3 align="center">CONSTANCIA DE COMPETENCIAS DE HABILIDADES LABORALES</h3>
 
-<table width="100%" border="1" cellpadding="6">
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
 
+    <!-- Encabezado -->
+    <tr>
+        <td colspan="2"
+            align="center"
+            bgcolor="#CFCFCF">
+
+            <strong>DATOS DEL TRABAJADOR</strong>
+
+        </td>
+    </tr>
+
+    <!-- Nombre -->
+    <tr>
+        <td colspan="2" height="28">
+
+            <small>
+                Nombre
+                (Anotar apellido paterno, apellido materno y nombre(s))
+            </small>
+
+            <br>
+
+            <strong style="font-size: 8px; padding-right: 10px;">
+                {{fullname}}
+            </strong>
+        </td>
+    </tr>
+
+    <!-- CURP y Ocupación -->
+    <tr>
+
+        <td width="50%" style="padding: 0; margin: 0;">
+
+            <small>
+                Clave Única de Registro de Población
+            </small>
+
+        </td>
+
+        <td width="50%">
+
+            <small>
+
+                Ocupación específica
+                (Catálogo Nacional de Ocupaciones)
+
+            </small>
+
+            <br><br>
+
+            <strong style="font-size: 8px;">
+                {{ocupacion}}
+            </strong>
+
+        </td>
+
+    </tr>
+
+    <!-- Puesto -->
+    <tr>
+
+        <td colspan="2" height="30">
+
+            <small>
+                Puesto
+            </small>
+
+            <br>
+
+            <strong style="font-size: 8px;">
+                {{puesto}}
+            </strong>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
 <tr>
-    <td><strong>Instructor signature</strong></td>
-    <td>
-        {{#instructorsignature}}
-            <img src="{{instructorsignature}}" width="120" />
-        {{/instructorsignature}}
+    <td height="1"></td>
+</tr>
+</table>
 
-        {{^instructorsignature}}
-            <em>Sin firma</em>
-        {{/instructorsignature}}
-    </td>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+
+    <!-- Encabezado -->
+    <tr>
+        <td
+            align="center"
+            bgcolor="#CFCFCF">
+
+            <strong>DATOS DE LA EMPRESA</strong>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td height="28">
+
+            <small>
+                Nombre o razón social (En caso de ser persona fisica, anotar apellido paterna, apeliido materno y nombre(s))
+            </small>
+
+            <br>
+
+            <strong style="font-size: 8px; padding-right: 10px;">
+                {{empresa}}
+            </strong>
+        </td>
+    </tr>
+
+     <tr>
+        <td height="28">
+
+            <small>
+                Registro Federal de Contribuyentes con homoclave (SHCP)
+            </small>
+
+            <br><br>
+
+        </td>
+    </tr>
+
+</table>
+
+<table width="100%">
+<tr>
+    <td height="1"></td>
+</tr>
+</table>
+
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+
+    <tr>
+        <td colspan="9"
+            align="center"
+            bgcolor="#CFCFCF">
+
+            <strong>
+                DATOS DEL PROGRAMA DE CAPACITACIÓN,
+                ADIESTRAMIENTO Y PRODUCTIVIDAD
+            </strong>
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td colspan="9" height="22">
+
+            <small>
+                Nombre del curso
+            </small>
+
+            <br>
+
+            <strong style="font-size:8px;">
+                {{coursename}}
+            </strong>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td width="28%">
+
+            <small>
+                Duración en horas
+            </small>
+
+            <br>
+
+            <strong>
+                {{duracion}}
+            </strong>
+
+        </td>
+
+        <td width="20%">
+
+            <small>
+                Periodo de ejecución
+            </small>
+
+            <br>
+
+
+                <strong style="font-size:7px;">
+                    De:
+                </strong>
+
+           
+
+        </td>
+
+        <td width="12%" align="center">
+<small>Año</small></td>
+
+        <td width="6%" align="center">
+<small>Mes</small></td>
+
+        <td width="6%" align="center">
+<small>Día</small></td>
+
+        <td width="4%">
+
+            <table width="100%" height="100%">
+
+                <tr>
+
+                    <td align="center" valign="bottom">
+
+                        <strong style="font-size:7px;">
+                            a
+                        </strong>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </td>
+
+        <td width="12%" align="center">
+<small>Año</small></td>
+
+        <td width="6%" align="center">
+<small>Mes</small></td>
+
+        <td width="6%" align="center">
+<small>Día</small></td>
+
+    </tr>
+
+    <tr>
+
+        <td colspan="9" height="22">
+
+            <small>
+                Área temática
+            </small>
+
+            <br>
+
+            <strong style="font-size:8px;">
+                {{areatematica}}
+            </strong>
+
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="9" height="22">
+
+            <small>
+                Nombre del agente capacitador o STPS
+            </small>
+
+            <br>
+
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+<tr>
+    <td height="1"></td>
+</tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+
+    <tr>
+
+        <td colspan="3"
+            align="center"
+            style="font-size:7.5px;">
+
+            <strong>
+
+                Los datos se asientan en esta constancia bajo protesta de decir verdad,
+                apercibidos de la responsabilidad en que incurre todo aquel que no se
+                conduce con verdad.
+
+            </strong>
+
+        </td>
+
+    </tr>
+
+    <tr><td height="8"></td></tr>
+
+    <tr>
+
+        <td width="33%" align="center">
+
+            <small>Instructor o tutor</small>
+
+        </td>
+
+        <td width="34%" align="center">
+
+            <small>Patrón o representante legal <sup>4/</sup></small>
+
+        </td>
+
+        <td width="33%" align="center">
+
+            <small>Representante de los trabajadores <sup>5/</sup></small>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td height="32" align="center">
+
+            {{#instructorsignature}}
+
+                <img
+                    src="{{instructorsignature}}"
+                    height="30" width="70" />
+
+            {{/instructorsignature}}
+
+        </td>
+
+        <td align="center">
+
+            {{#patronsignature}}
+
+                <img
+                    src="{{patronsignature}}"
+                    height="30" width="70" />
+
+            {{/patronsignature}}
+
+        </td>
+
+        <td align="center">
+
+            {{#workerssignature}}
+
+                <img
+                    src="{{workerssignature}}"
+                    height="30" width="70" />
+
+            {{/workerssignature}}
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">
+
+            <strong style="font-size:8px;">
+                {{instructor}}
+            </strong>
+
+            <table
+                width="70%"
+                cellpadding="0"
+                cellspacing="0"
+                align="center">
+
+                <tr>
+
+                    <td
+                        height="1"
+                        style="border-bottom:1px solid #000;">
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <div align="center">
+
+                <small>
+                    Nombre y firma
+                </small>
+
+            </div>
+
+        </td>
+
+        <td align="center">
+
+            <strong style="font-size:8px;">
+                {{patron}}
+            </strong>
+
+            <table
+                width="70%"
+                cellpadding="0"
+                cellspacing="0"
+                align="center">
+
+                <tr>
+
+                    <td
+                        height="1"
+                        style="border-bottom:1px solid #000;">
+                    </td>
+
+                </tr>
+
+            </table>
+
+             <div align="center">
+
+                <small>
+                    Nombre y firma
+                </small>
+
+            </div>
+
+        </td>
+
+        <td align="center">
+
+            <strong style="font-size:8px;">
+                {{worker}}
+            </strong>
+
+            <table
+                width="70%"
+                cellpadding="0"
+                cellspacing="0"
+                align="center">
+
+                <tr>
+
+                    <td
+                        height="1"
+                        style="border-bottom:1px solid #000;">
+                    </td>
+
+                </tr>
+
+            </table>
+
+             <div align="center">
+
+                <small>
+                    Nombre y firma
+                </small>
+
+            </div>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+<tr>
+    <td height="200"></td>
+</tr>
+</table>
+
+<table width="100%" cellpadding="1" cellspacing="0" style="font-size:6px;">
+
+    <tr>
+        <td colspan="4"
+            align="center"
+            style="font-size:7px;">
+
+            <strong>
+                CLAVES Y DENOMINACIONES DE ÁREAS Y SUBÁREAS
+                DEL CATÁLOGO NACIONAL DE OCUPACIONES
+            </strong>
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td width="12%"
+            align="center">
+
+            <strong style="font-size:6px;">
+                CLAVE DEL<br>
+                ÁREA/SUBÁREA
+            </strong>
+
+        </td>
+
+        <td width="38%"
+            align="center">
+
+            <strong style="font-size:6px;">
+                DENOMINACIÓN
+            </strong>
+
+        </td>
+
+        <td width="12%"
+            align="center">
+
+            <strong style="font-size:6px;">
+                CLAVE DEL<br>
+                ÁREA/SUBÁREA
+            </strong>
+
+        </td>
+
+        <td width="38%"
+            align="center">
+
+            <strong style="font-size:6px;">
+                DENOMINACIÓN
+            </strong>
+
+        </td>
+
+    </tr>
+
+    <tr>
+    <td align="center">01</td>
+    <td>Cultivo, crianza y aprovechamiento</td>
+
+    <td align="center">06</td>
+    <td>Transporte</td>
 </tr>
 
 <tr>
-    <td><strong>Patron signature</strong></td>
-    <td>
-        {{#patronsignature}}
-            <img src="{{patronsignature}}" width="120" />
-        {{/patronsignature}}
+    <td align="center">01.1</td>
+    <td>Agricultura y silvicultura</td>
 
-        {{^patronsignature}}
-            <em>Sin firma</em>
-        {{/patronsignature}}
-    </td>
+    <td align="center">06.1</td>
+    <td>Ferroviario</td>
 </tr>
 
 <tr>
-    <td><strong>Workers signature</strong></td>
-    <td>
-        {{#workerssignature}}
-            <img src="{{workerssignature}}" width="120" />
-        {{/workerssignature}}
+    <td align="center">01.2</td>
+    <td>Ganadería</td>
 
-        {{^workerssignature}}
-            <em>Sin firma</em>
-        {{/workerssignature}}
-    </td>
+    <td align="center">06.2</td>
+    <td>Autotransporte</td>
+</tr>
+
+<tr>
+    <td align="center">01.3</td>
+    <td>Pesca y acuacultura</td>
+
+    <td align="center">06.3</td>
+    <td>Aéreo</td>
+</tr>
+
+<tr>
+    <td></td>
+    <td></td>
+
+    <td align="center">06.4</td>
+    <td>Marítimo y fluvial</td>
+</tr>
+
+<tr>
+    <td></td>
+    <td></td>
+
+    <td align="center">06.5</td>
+    <td>Servicios de apoyo</td>
+</tr>
+
+<tr>
+    <td align="center">02</td>
+    <td>Extracción y suministro</td>
+
+    <td align="center">07</td>
+    <td>Provisión de bienes y servicios</td>
+</tr>
+
+<tr>
+    <td align="center">02.1</td>
+    <td>Exploración</td>
+
+    <td align="center">07.1</td>
+    <td>Comercio</td>
+</tr>
+
+<tr>
+    <td align="center">02.2</td>
+    <td>Extracción</td>
+
+    <td align="center">07.2</td>
+    <td>Alimentación y hospedaje</td>
+</tr>
+
+<tr>
+    <td align="center">02.3</td>
+    <td>Refinación y beneficio</td>
+
+    <td align="center">07.3</td>
+    <td>Turismo</td>
+</tr>
+
+<tr>
+    <td align="center">02.4</td>
+    <td>Provisión de energía</td>
+
+    <td align="center">07.4</td>
+    <td>Deporte y esparcimiento</td>
+</tr>
+
+<tr>
+    <td align="center">02.5</td>
+    <td>Provisión de agua</td>
+
+    <td align="center">07.5</td>
+    <td>Servicios personales</td>
+</tr>
+
+<tr>
+    <td align="center">03</td>
+    <td>Construcción</td>
+
+    <td align="center">07.6</td>
+    <td>Reparación de artículos de uso doméstico y personal</td>
+</tr>
+
+<tr>
+    <td align="center">03.1</td>
+    <td>Planeación y dirección de obras</td>
+
+    <td align="center">07.7</td>
+    <td>Limpieza</td>
+</tr>
+
+<tr>
+    <td align="center">03.2</td>
+    <td>Edificación y urbanización</td>
+
+    <td align="center">07.8</td>
+    <td>Servicio postal y mensajería</td>
+</tr>
+
+<tr>
+    <td align="center">03.3</td>
+    <td>Acabado</td>
+
+    <td></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td align="center">03.4</td>
+    <td>Instalación y mantenimiento</td>
+
+    <td></td>
+    <td></td>
+</tr>
+
+
+    <tr>
+
+        <td align="center">04</td>
+        <td>Tecnología</td>
+
+        <td align="center">08</td>
+        <td>Gestión y soporte administrativo</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">04.1</td>
+        <td>Mecánica</td>
+
+        <td align="center">08.1</td>
+        <td>Bolsa, banca y seguros</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">04.2</td>
+        <td>Electricidad</td>
+
+        <td align="center">08.2</td>
+        <td>Administración</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">04.3</td>
+        <td>Electrónica</td>
+
+        <td align="center">08.3</td>
+        <td>Servicios legales</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">04.4</td>
+        <td>Informática</td>
+
+        <td align="center">09</td>
+        <td>Salud y protección social</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">04.5</td>
+        <td>Telecomunicaciones</td>
+
+        <td align="center">09.1</td>
+        <td>Servicios médicos</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">04.6</td>
+        <td>Procesos industriales</td>
+
+        <td align="center">09.2</td>
+        <td>Inspección sanitaria y del medio ambiente</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05</td>
+        <td>Procesamiento y fabricación</td>
+
+        <td align="center">09.3</td>
+        <td>Seguridad social</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.1</td>
+        <td>Minerales no metálicos</td>
+
+        <td align="center">09.4</td>
+        <td>Protección de bienes y/o personas</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.2</td>
+        <td>Metales</td>
+
+        <td align="center">10</td>
+        <td>Comunicación</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.3</td>
+        <td>Alimentos y bebidas</td>
+
+        <td align="center">10.1</td>
+        <td>Publicación</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.4</td>
+        <td>Textiles y prendas de vestir</td>
+
+        <td align="center">10.2</td>
+        <td>Radio, cine, televisión y teatro</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.5</td>
+        <td>Materia orgánica</td>
+
+        <td align="center">10.3</td>
+        <td>Interpretación artística</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.6</td>
+        <td>Productos químicos</td>
+
+        <td align="center">10.4</td>
+        <td>Traducción e interpretación lingüísticas</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.7</td>
+        <td>Productos metálicos y de hule y plástico</td>
+
+        <td align="center">10.5</td>
+        <td>Publicidad, propaganda y relaciones públicas</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.8</td>
+        <td>Productos eléctricos y electrónicos</td>
+
+        <td align="center">11</td>
+        <td>Desarrollo y extensión del conocimiento</td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center">05.9</td>
+        <td>Productos impresos</td>
+
+        <td align="center">11.1</td>
+        <td>Investigación</td>
+
+    </tr>
+
+    <tr>
+
+        <td></td>
+        <td></td>
+
+        <td align="center">11.2</td>
+        <td>Enseñanza</td>
+
+    </tr>
+
+    <tr>
+
+        <td></td>
+        <td></td>
+
+        <td align="center">11.3</td>
+        <td>Difusión cultural</td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+<tr>
+    <td height="3"></td>
+</tr>
+</table>
+
+<table width="100%" cellpadding="1" cellspacing="0" style="font-size:6px;">
+
+<tr>
+
+<td colspan="4"
+    align="center">
+
+<strong style="font-size:7px;">
+
+CLAVES Y DENOMINACIONES DEL CATÁLOGO
+DE ÁREAS TEMÁTICAS DE LOS CURSOS
+
+</strong>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td width="12%" align="center">
+
+<strong style="font-size:6px;">
+CLAVE DEL<br>
+ÁREA
+</strong>
+
+</td>
+
+<td width="38%" align="center">
+
+<strong style="font-size:6px;">
+DENOMINACIÓN
+</strong>
+
+</td>
+
+<td width="12%" align="center">
+
+<strong style="font-size:6px;">
+CLAVE DEL<br>
+ÁREA
+</strong>
+
+</td>
+
+<td width="38%" align="center">
+
+<strong style="font-size:6px;">
+DENOMINACIÓN
+</strong>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="center">1000</td>
+<td>Producción general</td>
+
+<td align="center">6000</td>
+<td>Seguridad</td>
+
+</tr>
+
+<tr>
+
+<td align="center">2000</td>
+<td>Servicios</td>
+
+<td align="center">7000</td>
+<td>Desarrollo personal y familiar</td>
+
+</tr>
+
+<tr>
+
+<td align="center">3000</td>
+<td>Administración, contabilidad y economía</td>
+
+<td align="center">8000</td>
+<td>Uso de tecnologías de información y comunicación</td>
+
+</tr>
+
+<tr>
+
+<td align="center">4000</td>
+<td>Comercialización</td>
+
+<td align="center">9000</td>
+<td>Participación social</td>
+
+</tr>
+
+<tr>
+
+<td align="center">5000</td>
+<td>Mantenimiento y reparación</td>
+
+<td></td>
+<td></td>
+
 </tr>
 
 </table>

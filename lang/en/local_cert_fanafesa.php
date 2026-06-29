@@ -10,3 +10,6 @@ $string['manage'] = 'Administración';
 $string['instructor'] = 'Instructor o tutor';
 $string['patron'] = 'Patrón o representante legal';
 $string['trabajadores'] = 'Representante de los trabajadores';
+
+$string['missingsigners'] =
+    'No es posible generar el certificado porque el curso no tiene configurados todos los firmantes.';
