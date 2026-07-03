@@ -71,6 +71,14 @@ class certificate_generator {
 
         $pdf->setPage(1);
 
+        $pdf->SetLineWidth(0.3);
+
+        $pdf->Line(27, 238, 75, 238);
+
+        $pdf->Line(80, 238, 130, 238);
+
+        $pdf->Line(135, 238, 182, 238);
+
         self::draw_boxes(
             $pdf,
             25.4,

@@ -64,13 +64,25 @@ class certificate_data {
 
         $fullname = trim($lastname . ' ' . $firstname);
 
-        $periodoinicio = !empty($customfields['periodoinicio'])
-            ? userdate((int)$customfields['periodoinicio'], '%d/%m/%Y')
-            : '';
+        $periodoinicio = '';
 
-        $periodofinal = !empty($customfields['periodofinal'])
-            ? userdate((int)$customfields['periodofinal'], '%d/%m/%Y')
-            : '';
+        if (!empty($customfields['periodoinicio'])) {
+
+            $ts = (int)$customfields['periodoinicio'];
+
+            $periodoinicio = date('d/m/Y', $ts);
+
+        }
+
+        $periodofinal = '';
+
+        if (!empty($customfields['periodofinal'])) {
+
+            $ts = (int)$customfields['periodofinal'];
+
+            $periodofinal = date('d/m/Y', $ts);
+
+        }
 
         [$di, $mi, $ai] = array_pad(
             explode('/', $periodoinicio),
