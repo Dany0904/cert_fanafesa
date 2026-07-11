@@ -6,11 +6,6 @@ require_login();
 
 $context = context_system::instance();
 
-/* require_capability(
-    'local/cert_fanafesa:manage',
-    $context
-); */
-
 $PAGE->set_context($context);
 
 $PAGE->set_url(
@@ -19,9 +14,13 @@ $PAGE->set_url(
 
 $PAGE->set_pagelayout('admin');
 
-$PAGE->set_title('Firmantes');
+$PAGE->set_title(
+    get_string('signers', 'local_cert_fanafesa')
+);
 
-$PAGE->set_heading('Firmantes');
+$PAGE->set_heading(
+    get_string('signers', 'local_cert_fanafesa')
+);
 
 $form = new \local_cert_fanafesa\form\signer_form();
 
@@ -39,23 +38,20 @@ if ($data = $form->get_data()) {
     );
 
     redirect(
-        new moodle_url(
-            '/local/cert_fanafesa/signers.php'
-        ),
-        'Firmante guardado'
+        new moodle_url('/local/cert_fanafesa/signers.php'),
+        get_string('signerssaved', 'local_cert_fanafesa')
     );
 }
 
 echo $OUTPUT->header();
 
-echo $OUTPUT->heading('Firmantes');
+echo $OUTPUT->heading(
+    get_string('signers', 'local_cert_fanafesa')
+);
 
 echo html_writer::div(
-
-    'Administración de instructores, representantes patronales y representantes de trabajadores.',
-
+    get_string('signersdescription', 'local_cert_fanafesa'),
     'alert alert-info'
-
 );
 
 /*
@@ -91,10 +87,9 @@ echo html_writer::start_div(
 
 echo html_writer::div(
 
-    '<strong>Firmantes registrados:</strong> '
-
-    .
-
+    '<strong>' .
+    get_string('registeredsigners', 'local_cert_fanafesa') .
+    ':</strong> ' .
     $total,
 
     'alert alert-secondary'
@@ -109,10 +104,9 @@ echo html_writer::start_div(
 
 echo html_writer::div(
 
-    '<strong>Firmantes activos:</strong> '
-
-    .
-
+    '<strong>' .
+    get_string('activesigners', 'local_cert_fanafesa') .
+    ':</strong> ' .
     $activos,
 
     'alert alert-success'
@@ -139,11 +133,8 @@ echo html_writer::start_div(
 );
 
 echo html_writer::tag(
-
     'h4',
-
-    'Nuevo firmante'
-
+    get_string('newsigner', 'local_cert_fanafesa')
 );
 
 $form->display();
@@ -168,26 +159,23 @@ echo html_writer::start_div(
 );
 
 echo html_writer::tag(
-
     'h4',
-
-    'Firmantes registrados'
-
+    get_string('registeredsigners', 'local_cert_fanafesa')
 );
 
 $table = new html_table();
 
 $table->head = [
 
-    'Nombre',
+    get_string('name', 'local_cert_fanafesa'),
 
-    'Tipo',
+    get_string('type', 'local_cert_fanafesa'),
 
-    'Firma',
+    get_string('signature', 'local_cert_fanafesa'),
 
-    'Estado',
+    get_string('status', 'local_cert_fanafesa'),
 
-    'Acciones'
+    get_string('actions', 'local_cert_fanafesa')
 
 ];
 
@@ -241,7 +229,7 @@ foreach ($records as $record) {
 
             html_writer::span(
 
-                'Activo',
+                get_string('active', 'local_cert_fanafesa'),
 
                 'badge badge-success'
 
@@ -251,7 +239,7 @@ foreach ($records as $record) {
 
             html_writer::span(
 
-                'Inactivo',
+                get_string('inactive', 'local_cert_fanafesa'),
 
                 'badge badge-secondary'
 
@@ -295,7 +283,7 @@ foreach ($records as $record) {
 
             $editurl,
 
-            'Editar',
+            get_string('edit', 'local_cert_fanafesa'),
 
             [
 
@@ -315,9 +303,13 @@ foreach ($records as $record) {
 
         $record->active
 
-            ? 'Desactivar'
+            ?
 
-            : 'Activar',
+            get_string('deactivate', 'local_cert_fanafesa')
+
+            :
+
+            get_string('activate', 'local_cert_fanafesa'),
 
         [
 
@@ -388,7 +380,7 @@ echo html_writer::div(
 
         ),
 
-        '← Volver',
+        get_string('back', 'local_cert_fanafesa'),
 
         [
 

@@ -34,21 +34,21 @@ class course_form extends \moodleform {
         $mform->addElement(
             'select',
             'instructorid',
-            'Instructor',
+            get_string('instructor', 'local_cert_fanafesa'),
             $instructors
         );
 
         $mform->addElement(
             'select',
             'patronid',
-            'Patrón',
+            get_string('patron', 'local_cert_fanafesa'),
             $patrons
         );
 
         $mform->addElement(
             'select',
             'trabajadoresid',
-            'Representante trabajadores',
+            get_string('trabajadores', 'local_cert_fanafesa'),
             $trabajadores
         );
 

@@ -54,22 +54,39 @@ function local_cert_fanafesa_before_footer() {
     }
 
     $cmid = optional_param('id', 0, PARAM_INT);
+
     if (!$cmid) {
+        return;
+    }
+
+    $cm = get_coursemodule_from_id(
+        'customcert',
+        $cmid,
+        0,
+        false,
+        MUST_EXIST
+    );
+
+    $courseid = $cm->course;
+
+    $config = \local_cert_fanafesa\course_manager::get($courseid);
+
+    $usecustombutton = $config && !empty($config->usecustombutton);
+
+    if (!$usecustombutton) {
         return;
     }
 
     $url = new moodle_url('/local/cert_fanafesa/download.php', [
         'cmid' => $cmid
     ]);
-
-    $button = html_writer::div(
-        html_writer::link(
-            $url,
-            'Descargar certificado',
-            ['class' => 'btn btn-success']
-        ),
-        'fanafesa-btn-container'
+    
+    $PAGE->requires->js_call_amd(
+        'local_cert_fanafesa/customcert',
+        'init',
+        [
+            $url->out(false),
+            get_string('downloadcertificate', 'local_cert_fanafesa')
+        ]
     );
-
-    echo $button;
 }

@@ -24,11 +24,11 @@ $PAGE->set_pagelayout(
 );
 
 $PAGE->set_title(
-    'Certificados FANAFESA'
+    get_string('title', 'local_cert_fanafesa')
 );
 
 $PAGE->set_heading(
-    'Certificados FANAFESA'
+    get_string('title', 'local_cert_fanafesa')
 );
 
 /*
@@ -54,15 +54,12 @@ $configuredcourses = $DB->count_records(
 echo $OUTPUT->header();
 
 echo $OUTPUT->heading(
-    'Certificados FANAFESA'
+    get_string('title', 'local_cert_fanafesa')
 );
 
 echo html_writer::div(
-
-    'Sistema de administración y generación de certificados personalizados.',
-
+    get_string('description', 'local_cert_fanafesa'),
     'alert alert-info'
-
 );
 
 /*
@@ -81,7 +78,9 @@ echo html_writer::start_div(
 
 echo html_writer::div(
 
-    '<strong>Firmantes registrados:</strong> '
+    '<strong>' .
+    get_string('registeredsigners', 'local_cert_fanafesa') .
+    ':</strong> ' 
 
     .
 
@@ -99,7 +98,9 @@ echo html_writer::start_div(
 
 echo html_writer::div(
 
-    '<strong>Cursos configurados:</strong> '
+    '<strong>' .
+    get_string('configuredcourses', 'local_cert_fanafesa') .
+    ':</strong> ' 
 
     .
 
@@ -142,19 +143,13 @@ echo html_writer::start_div(
 );
 
 echo html_writer::tag(
-
     'h4',
-
-    'Firmantes'
-
+    get_string('signers', 'local_cert_fanafesa')
 );
 
 echo html_writer::tag(
-
     'p',
-
-    'Administración de instructores, representantes patronales y representantes de trabajadores.'
-
+    get_string('signersdescription', 'local_cert_fanafesa')
 );
 
 echo html_writer::link(
@@ -165,7 +160,7 @@ echo html_writer::link(
 
     ),
 
-    'Administrar firmantes',
+    get_string('managesigners', 'local_cert_fanafesa'),
 
     [
 
@@ -202,19 +197,13 @@ echo html_writer::start_div(
 );
 
 echo html_writer::tag(
-
     'h4',
-
-    'Cursos'
-
+    get_string('courses', 'local_cert_fanafesa')
 );
 
 echo html_writer::tag(
-
     'p',
-
-    'Asociación de firmantes y configuración específica para cada curso.'
-
+    get_string('coursesdescription', 'local_cert_fanafesa')
 );
 
 echo html_writer::link(
@@ -225,7 +214,7 @@ echo html_writer::link(
 
     ),
 
-    'Configurar cursos',
+     get_string('managecourses', 'local_cert_fanafesa'),
 
     [
 
@@ -260,21 +249,14 @@ echo html_writer::start_div(
 echo html_writer::start_div(
     'card-body'
 );
-
 echo html_writer::tag(
-
     'h4',
-
-    'Certificados'
-
+    get_string('certificates', 'local_cert_fanafesa')
 );
 
 echo html_writer::tag(
-
     'p',
-
-    'Consulta, descarga individual y generación masiva de certificados en formato ZIP.'
-
+    get_string('certificatesdescription', 'local_cert_fanafesa')
 );
 
 echo html_writer::link(
@@ -285,7 +267,7 @@ echo html_writer::link(
 
     ),
 
-    'Ver certificados',
+    get_string('viewcertificates', 'local_cert_fanafesa'),
 
     [
 

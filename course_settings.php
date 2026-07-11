@@ -34,7 +34,7 @@ $PAGE->set_pagelayout(
 );
 
 $PAGE->set_title(
-    'Configuración FANAFESA'
+    get_string('coursesettings', 'local_cert_fanafesa')
 );
 
 $PAGE->set_heading(
@@ -193,7 +193,7 @@ if ($data = $form->get_data()) {
                 'courseid' => $courseid
             ]
         ),
-        'Configuración guardada'
+        get_string('configurationsaved', 'local_cert_fanafesa')
     );
 }
 
@@ -206,15 +206,12 @@ if ($data = $form->get_data()) {
 echo $OUTPUT->header();
 
 echo $OUTPUT->heading(
-    'Configuración de firmantes'
+    get_string('signersconfiguration', 'local_cert_fanafesa')
 );
 
 echo html_writer::div(
-
-    'Seleccione los firmantes que aparecerán en los certificados emitidos para este curso.',
-
+    get_string('coursesettings_desc', 'local_cert_fanafesa'),
     'alert alert-info'
-
 );
 
 /*
@@ -249,7 +246,7 @@ $estado =
 
         html_writer::span(
 
-            'Configuración completa',
+            get_string('configurationcomplete', 'local_cert_fanafesa'),
 
             'badge badge-success'
 
@@ -259,7 +256,7 @@ $estado =
 
         html_writer::span(
 
-            'Pendiente de configuración',
+            get_string('configurationpending', 'local_cert_fanafesa'),
 
             'badge badge-warning'
 
@@ -287,7 +284,9 @@ echo html_writer::tag(
 
 echo html_writer::div(
 
-    '<strong>ID Curso:</strong> '
+     '<strong>' .
+    get_string('courseidlabel', 'local_cert_fanafesa') .
+    ':</strong> '
 
     .
 
@@ -297,7 +296,9 @@ echo html_writer::div(
 
 echo html_writer::div(
 
-    '<strong>Estado:</strong> '
+    '<strong>' .
+    get_string('statuslabel', 'local_cert_fanafesa') .
+    ':</strong> '
 
     .
 
@@ -371,13 +372,15 @@ if ($config) {
 
         'h5',
 
-        'Firmantes asignados'
+        get_string('assignedsigners', 'local_cert_fanafesa')
 
     );
 
     echo html_writer::alist([
 
-        '<strong>Instructor:</strong> '
+        '<strong>' .
+        get_string('instructor', 'local_cert_fanafesa') .
+        ':</strong> '
 
         .
 
@@ -391,7 +394,9 @@ if ($config) {
 
         ),
 
-        '<strong>Representante patronal:</strong> '
+        '<strong>' .
+        get_string('patron', 'local_cert_fanafesa') .
+        ':</strong> '
 
         .
 
@@ -405,7 +410,9 @@ if ($config) {
 
         ),
 
-        '<strong>Representante trabajadores:</strong> '
+        '<strong>' .
+        get_string('trabajadores', 'local_cert_fanafesa') .
+        ':</strong> '
 
         .
 
@@ -445,7 +452,7 @@ echo html_writer::tag(
 
     'h4',
 
-    'Asignación de firmantes'
+    get_string('assignsigners', 'local_cert_fanafesa')
 
 );
 
@@ -471,7 +478,7 @@ echo html_writer::div(
 
         ),
 
-        '← Volver',
+        get_string('back', 'local_cert_fanafesa'),
 
         [
 

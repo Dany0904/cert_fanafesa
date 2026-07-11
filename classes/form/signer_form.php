@@ -25,7 +25,7 @@ class signer_form extends \moodleform {
         $mform->addElement(
             'text',
             'fullname',
-            'Nombre completo'
+            get_string('fullname', 'local_cert_fanafesa')
         );
 
         $mform->setType(
@@ -42,11 +42,11 @@ class signer_form extends \moodleform {
         $mform->addElement(
             'select',
             'role',
-            'Tipo de firmante',
+            get_string('signertype', 'local_cert_fanafesa'),
             [
-                'instructor'   => 'Instructor o tutor',
-                'patron'       => 'Patrón o representante legal',
-                'trabajadores' => 'Representante de los trabajadores'
+                'instructor'   => get_string('instructor', 'local_cert_fanafesa'),
+                'patron'       => get_string('patron', 'local_cert_fanafesa'),
+                'trabajadores' => get_string('trabajadores', 'local_cert_fanafesa')
             ]
         );
 
@@ -59,7 +59,7 @@ class signer_form extends \moodleform {
         $mform->addElement(
             'filemanager',
             'signature',
-            'Firma',
+            get_string('signature', 'local_cert_fanafesa'),
             null,
             [
                 'subdirs' => 0,
@@ -70,7 +70,7 @@ class signer_form extends \moodleform {
 
         $this->add_action_buttons(
             true,
-            'Guardar'
+            get_string('save', 'local_cert_fanafesa')
         );
     }
 }

@@ -32,22 +32,25 @@ $PAGE->set_pagelayout(
 );
 
 $PAGE->set_title(
-    'Cursos FANAFESA'
+    get_string('courses', 'local_cert_fanafesa')
 );
 
 $PAGE->set_heading(
-    'Cursos FANAFESA'
+    get_string('courses', 'local_cert_fanafesa')
 );
 
 echo $OUTPUT->header();
 
 echo $OUTPUT->heading(
-    'Configuración de cursos'
+    get_string('courseconfiguration', 'local_cert_fanafesa')
 );
 
 echo html_writer::div(
 
-    'Asocie usuarios a cada curso que utilizarán los certificados.',
+    get_string(
+        'coursesconfigurationdescription',
+        'local_cert_fanafesa'
+    ),
 
     'alert alert-info'
 
@@ -59,17 +62,17 @@ $table = new html_table();
 
 $table->head = [
 
-    'Curso',
+    get_string('course', 'local_cert_fanafesa'),
 
-    'Instructor',
+    get_string('instructor', 'local_cert_fanafesa'),
 
-    'Patrón',
+    get_string('patron', 'local_cert_fanafesa'),
 
-    'Trabajadores',
+    get_string('trabajadores', 'local_cert_fanafesa'),
 
-    'Estado',
+    get_string('enabledc3', 'local_cert_fanafesa'),
 
-    'Acciones'
+    get_string('actions', 'local_cert_fanafesa')
 
 ];
 
@@ -99,12 +102,35 @@ foreach ($courses as $course) {
     $patron = '-';
     $trabajadores = '-';
 
-    $estado = html_writer::span(
+     $toggleurl = new moodle_url(
+        '/local/cert_fanafesa/toggle_custom_button.php',
+        [
+            'courseid' => $course->id,
+            'usecustombutton' => $config && $config->usecustombutton ? 0 : 1,
+            'sesskey' => sesskey()
+        ]
+    );
 
-        'Sin configurar',
+    $status = $config && $config->usecustombutton
+        ? html_writer::span(
+            get_string('enabled', 'local_cert_fanafesa'),
+            'badge badge-success'
+        )
+        : html_writer::span(
+            get_string('disabled', 'local_cert_fanafesa'),
+            'badge badge-secondary'
+        );
 
-        'badge badge-warning'
-
+    $dc3button = $status . ' ' . html_writer::link(
+        $toggleurl,
+        $config && $config->usecustombutton
+            ? get_string('deactivate', 'local_cert_fanafesa')
+            : get_string('activate', 'local_cert_fanafesa'),
+        [
+            'class' => $config && $config->usecustombutton
+                ? 'btn btn-warning btn-sm ml-2'
+                : 'btn btn-success btn-sm ml-2'
+        ]
     );
 
     if ($config) {
@@ -177,36 +203,6 @@ foreach ($courses as $course) {
 
             '-';
 
-        if (
-
-            $config->instructorid &&
-
-            $config->patronid &&
-
-            $config->trabajadoresid
-
-        ) {
-
-            $estado = html_writer::span(
-
-                'Completo',
-
-                'badge badge-success'
-
-            );
-
-        } else {
-
-            $estado = html_writer::span(
-
-                'Parcial',
-
-                'badge badge-secondary'
-
-            );
-
-        }
-
     }
 
     $url = new moodle_url(
@@ -227,7 +223,7 @@ foreach ($courses as $course) {
 
         $url,
 
-        'Configurar',
+        get_string('configure', 'local_cert_fanafesa'),
 
         [
 
@@ -253,7 +249,7 @@ foreach ($courses as $course) {
 
         $trabajadores,
 
-        $estado,
+        $dc3button,
 
         $button
 
@@ -277,7 +273,9 @@ echo html_writer::start_div(
 
 echo html_writer::div(
 
-    '<strong>Cursos:</strong> '
+    '<strong>' .
+    get_string('courses', 'local_cert_fanafesa') .
+    ':</strong> '
 
     .
 
@@ -297,7 +295,9 @@ echo html_writer::start_div(
 
 echo html_writer::div(
 
-    '<strong>Cursos configurados:</strong> '
+    '<strong>' .
+    get_string('configuredcourses', 'local_cert_fanafesa') .
+    ':</strong> '
 
     .
 
@@ -328,7 +328,7 @@ echo html_writer::tag(
 
     'h4',
 
-    'Cursos'
+    get_string('courses', 'local_cert_fanafesa')
 
 );
 
@@ -356,7 +356,7 @@ echo html_writer::div(
 
         ),
 
-        '← Volver',
+        get_string('back', 'local_cert_fanafesa'),
 
         [
 

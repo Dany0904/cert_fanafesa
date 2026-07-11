@@ -46,11 +46,11 @@ $PAGE->set_pagelayout(
 );
 
 $PAGE->set_title(
-    'Editar firmante'
+    get_string('editsigner', 'local_cert_fanafesa')
 );
 
 $PAGE->set_heading(
-    'Editar firmante'
+    get_string('editsigner', 'local_cert_fanafesa')
 );
 
 /*
@@ -174,15 +174,10 @@ if (
     );
 
     redirect(
-
         new moodle_url(
-
             '/local/cert_fanafesa/signers.php'
-
         ),
-
-        'Firmante actualizado'
-
+        get_string('signerupdated', 'local_cert_fanafesa')
     );
 
 }
@@ -196,15 +191,12 @@ if (
 echo $OUTPUT->header();
 
 echo $OUTPUT->heading(
-    'Editar firmante'
+    get_string('editsigner', 'local_cert_fanafesa')
 );
 
 echo html_writer::div(
-
-    'Actualice la información del firmante y su firma asociada.',
-
+    get_string('editsignerdescription', 'local_cert_fanafesa'),
     'alert alert-info'
-
 );
 
 /*
@@ -236,11 +228,8 @@ if ($url) {
     );
 
     echo html_writer::tag(
-
         'h5',
-
-        'Firma actual'
-
+        get_string('currentsignature', 'local_cert_fanafesa')
     );
 
     echo html_writer::empty_tag(
@@ -294,11 +283,8 @@ echo html_writer::start_div(
 );
 
 echo html_writer::tag(
-
     'h4',
-
-    'Datos del firmante'
-
+    get_string('signerdata', 'local_cert_fanafesa')
 );
 
 $form->display();
@@ -323,7 +309,7 @@ echo html_writer::div(
 
         ),
 
-        '← Volver',
+        get_string('back', 'local_cert_fanafesa'),
 
         [
 

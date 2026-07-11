@@ -1,18 +1,74 @@
 <?php
 
-$string['pluginname'] = 'Certificados Fanafesa';
-
-$string['cert_fanafesa:manage'] = 'Administrar Certificados Fanafesa';
-
-$string['settings'] = 'Configuración';
-$string['manage'] = 'Administración';
-
-$string['instructor'] = 'Instructor o tutor';
-$string['patron'] = 'Patrón o representante legal';
-$string['trabajadores'] = 'Representante de los trabajadores';
-
-$string['missingsigners'] =
-    'No es posible generar el certificado porque el curso no tiene configurados todos los firmantes.';
-
-$string['nousersselected'] =
-    'Debe seleccionar al menos un alumno.';
+$string['pluginname'] = 'FANAFESA Certificates';
+$string['title'] = 'FANAFESA Certificates';
+$string['dashboard'] = 'Dashboard';
+$string['description'] = 'Management and generation system for customized certificates.';
+$string['registeredsigners'] = 'Registered signers';
+$string['configuredcourses'] = 'Configured courses';
+$string['signers'] = 'Signers';
+$string['signersdescription'] = 'Manage instructors, employer representatives and employee representatives.';
+$string['managesigners'] = 'Manage signers';
+$string['courses'] = 'Courses';
+$string['coursesdescription'] = 'Assign signers and configure certificate settings for each course.';
+$string['managecourses'] = 'Configure courses';
+$string['certificates'] = 'Certificates';
+$string['certificatesdescription'] = 'View, download individual certificates, and generate ZIP files in bulk.';
+$string['viewcertificates'] = 'View certificates';
+$string['downloadcertificate'] = 'Download certificate';
+$string['signerssaved'] = 'Signer saved successfully.';
+$string['activesigners'] = 'Active signers';
+$string['newsigner'] = 'New signer';
+$string['name'] = 'Name';
+$string['type'] = 'Type';
+$string['signature'] = 'Signature';
+$string['status'] = 'Status';
+$string['actions'] = 'Actions';
+$string['active'] = 'Active';
+$string['inactive'] = 'Inactive';
+$string['edit'] = 'Edit';
+$string['activate'] = 'Activate';
+$string['deactivate'] = 'Deactivate';
+$string['back'] = '← Back';
+$string['fullname'] = 'Full name';
+$string['signertype'] = 'Signer type';
+$string['currentsignature'] = 'Current signature';
+$string['signerdata'] = 'Signer information';
+$string['editsigner'] = 'Edit signer';
+$string['editsignerdescription'] = 'Update the signer information and associated signature.';
+$string['signerupdated'] = 'Signer updated successfully.';
+$string['save'] = 'Save';
+$string['cancel'] = 'Cancel';
+$string['instructor'] = 'Instructor or trainer';
+$string['patron'] = 'Employer or legal representative';
+$string['trabajadores'] = 'Employee representative';
+$string['course'] = 'Course';
+$string['courseconfiguration'] = 'Course configuration';
+$string['coursesconfigurationdescription'] = 'Assign signers and configure certificate generation for each course.';
+$string['enabledc3'] = 'Enable DC-3';
+$string['configure'] = 'Configure';
+$string['enabled'] = 'Enabled';
+$string['disabled'] = 'Disabled';
+$string['coursesettings'] = 'FANAFESA Settings';
+$string['signersconfiguration'] = 'Signer configuration';
+$string['coursesettings_desc'] = 'Select the signers that will appear on certificates issued for this course.';
+$string['configurationcomplete'] = 'Configuration complete';
+$string['configurationpending'] = 'Configuration pending';
+$string['courseidlabel'] = 'Course ID';
+$string['statuslabel'] = 'Status';
+$string['assignedsigners'] = 'Assigned signers';
+$string['patronrepresentative'] = 'Employer representative';
+$string['workersrepresentative'] = 'Employee representative';
+$string['assignsigners'] = 'Assign signers';
+$string['configurationsaved'] = 'Configuration saved successfully.';
+$string['selectcourse'] = 'Select course';
+$string['selectacourse'] = 'Select a course';
+$string['courselabel'] = 'Course';
+$string['coursewithoutconfiguration'] = 'This course has not been configured for FANAFESA yet.';
+$string['nostudentsenrolled'] = 'There are no enrolled students.';
+$string['student'] = 'Student';
+$string['email'] = 'Email';
+$string['certificate'] = 'Certificate';
+$string['downloadpdf'] = 'PDF';
+$string['zipselected'] = 'Download selected as ZIP';
+$string['zipall'] = 'Download all as ZIP';

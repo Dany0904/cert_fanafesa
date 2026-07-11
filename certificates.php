@@ -17,11 +17,11 @@ $PAGE->set_url(
 $PAGE->set_pagelayout('admin');
 
 $PAGE->set_title(
-    'Certificados FANAFESA'
+    get_string('pluginname', 'local_cert_fanafesa')
 );
 
 $PAGE->set_heading(
-    'Certificados FANAFESA'
+    get_string('pluginname', 'local_cert_fanafesa')
 );
 
 $courseid = optional_param(
@@ -33,7 +33,7 @@ $courseid = optional_param(
 echo $OUTPUT->header();
 
 echo $OUTPUT->heading(
-    'Certificados'
+    get_string('certificates', 'local_cert_fanafesa')
 );
 
 /*
@@ -63,7 +63,7 @@ echo html_writer::start_div('card-body');
 
 echo html_writer::tag(
     'h5',
-    'Seleccionar curso'
+    get_string('selectcourse', 'local_cert_fanafesa')
 );
 
 echo html_writer::start_tag(
@@ -84,7 +84,12 @@ echo html_writer::select(
 
     $courseid,
 
-    ['0' => 'Seleccione un curso'],
+    [
+        '0' => get_string(
+            'selectacourse',
+            'local_cert_fanafesa'
+        )
+    ],
 
     [
 
@@ -117,11 +122,11 @@ if ($courseid) {
 
     echo html_writer::div(
 
-        '<strong>Curso:</strong> ' .
+        '<strong>' .
+        get_string('courselabel', 'local_cert_fanafesa') .
+        ':</strong> ' .
 
-        format_string(
-            $course->fullname
-        ),
+        format_string($course->fullname),
 
         'alert alert-info'
 
@@ -144,7 +149,10 @@ if ($courseid) {
 
         echo $OUTPUT->notification(
 
-            'Este curso aún no tiene configuración FANAFESA.',
+            get_string(
+                'coursewithoutconfiguration',
+                'local_cert_fanafesa'
+            ),
 
             'warning'
 
@@ -177,7 +185,10 @@ if ($courseid) {
 
             echo $OUTPUT->notification(
 
-                'No hay alumnos inscritos.',
+                get_string(
+                    'nostudentsenrolled',
+                    'local_cert_fanafesa'
+                ),
 
                 'info'
 
@@ -225,11 +236,20 @@ if ($courseid) {
 
                 '',
 
-                'Alumno',
+                get_string(
+                    'student',
+                    'local_cert_fanafesa'
+                ),
 
-                'Correo',
+                get_string(
+                    'email',
+                    'local_cert_fanafesa'
+                ),
 
-                'Certificado'
+                get_string(
+                    'certificate',
+                    'local_cert_fanafesa'
+                )
 
             ];
 
@@ -254,22 +274,24 @@ if ($courseid) {
 
                     );
 
-                $button =
-                    html_writer::link(
+                $button = html_writer::link(
 
-                        $downloadurl,
+                    $downloadurl,
 
-                        'PDF',
+                    get_string(
+                        'downloadpdf',
+                        'local_cert_fanafesa'
+                    ),
 
-                        [
+                    [
 
-                            'class' =>
+                        'class' =>
 
-                            'btn btn-sm btn-primary'
+                        'btn btn-sm btn-primary'
 
-                        ]
+                    ]
 
-                    );
+                );
 
                 $checkbox = html_writer::checkbox(
 
@@ -313,7 +335,10 @@ if ($courseid) {
 
                 'button',
 
-                'ZIP seleccionados',
+                get_string(
+                    'zipselected',
+                    'local_cert_fanafesa'
+                ),
 
                 [
 
@@ -333,7 +358,10 @@ if ($courseid) {
 
                 'button',
 
-                'ZIP completo',
+                get_string(
+                    'zipall',
+                    'local_cert_fanafesa'
+                ),
 
                 [
 
