@@ -295,6 +295,27 @@ foreach ($records as $record) {
 
         );
 
+    $deleteurl = new moodle_url(
+        '/local/cert_fanafesa/delete_signer.php',
+        [
+            'id' => $record->id,
+            'sesskey' => sesskey()
+        ]
+    );
+
+    $actions .= ' ';
+
+    $actions .= html_writer::link(
+        $deleteurl,
+        get_string('delete', 'local_cert_fanafesa'),
+        [
+            'class' => 'btn btn-sm btn-danger',
+            'onclick' => "return confirm('" .
+                get_string('confirmsignerdelete', 'local_cert_fanafesa') .
+                "');"
+        ]
+    );
+
     $actions .= ' ';
 
     $actions .= html_writer::link(

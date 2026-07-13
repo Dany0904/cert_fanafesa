@@ -181,9 +181,9 @@ if ($data = $form->get_data()) {
 
     \local_cert_fanafesa\course_manager::save(
         $courseid,
-        $data->instructorid,
-        $data->patronid,
-        $data->trabajadoresid
+        empty($data->instructorid) ? null : $data->instructorid,
+        empty($data->patronid) ? null : $data->patronid,
+        empty($data->trabajadoresid) ? null : $data->trabajadoresid
     );
 
     redirect(

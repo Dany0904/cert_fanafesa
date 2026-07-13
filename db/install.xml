@@ -75,17 +75,17 @@
                      <FIELD NAME="instructorid"
                             TYPE="int"
                             LENGTH="10"
-                            NOTNULL="true"/>
+                            NOTNULL="false"/>
 
                      <FIELD NAME="patronid"
                             TYPE="int"
                             LENGTH="10"
-                            NOTNULL="true"/>
+                            NOTNULL="false"/>
 
                      <FIELD NAME="trabajadoresid"
                             TYPE="int"
                             LENGTH="10"
-                            NOTNULL="true"/>
+                            NOTNULL="false"/>
 
                      <FIELD NAME="usecustombutton"
                             TYPE="int"

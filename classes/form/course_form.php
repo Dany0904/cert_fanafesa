@@ -13,12 +13,18 @@ class course_form extends \moodleform {
         $mform = $this->_form;
 
         $instructors =
+            [0 => get_string('notassigned', 'local_cert_fanafesa')]
+            +
             $this->_customdata['instructors'];
 
         $patrons =
+            [0 => get_string('notassigned', 'local_cert_fanafesa')]
+            +
             $this->_customdata['patrons'];
 
         $trabajadores =
+            [0 => get_string('notassigned', 'local_cert_fanafesa')]
+            +
             $this->_customdata['trabajadores'];
 
         $mform->addElement(
