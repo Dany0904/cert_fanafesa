@@ -73,16 +73,16 @@ class certificate_generator {
 
         $pdf->SetLineWidth(0.3);
 
-        $pdf->Line(27, 238, 75, 238);
+        $pdf->Line(27, 224, 75, 224);
 
-        $pdf->Line(80, 238, 130, 238);
+        $pdf->Line(80, 224, 130, 224);
 
-        $pdf->Line(135, 238, 182, 238);
+        $pdf->Line(135, 224, 182, 224);
 
         self::draw_boxes(
             $pdf,
             25.4,
-            96,
+            82.2,
             $data['curp'],
             18,
             4.4
@@ -91,7 +91,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             25.4,
-            138.2,
+            124.8,
             $data['rfcempresa'],
             15,
             5.2,
@@ -103,7 +103,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             101.6,
-            173,
+            159.6,
             $data['inicioanio'],
             4,
             4.75,
@@ -113,7 +113,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             121,
-            173,
+            159.6,
             $data['iniciomes'],
             2,
             4.75,
@@ -123,7 +123,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             130.8,
-            173,
+            159.6,
             $data['iniciodia'],
             2,
             4.75,
@@ -133,7 +133,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             147,
-            173,
+            159.6,
             $data['finalanio'],
             4,
             4.75,
@@ -143,7 +143,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             166,
-            173,
+            159.6,
             $data['finalmes'],
             2,
             4.75,
@@ -153,7 +153,7 @@ class certificate_generator {
         self::draw_boxes(
             $pdf,
             175.5,
-            173,
+            159.6,
             $data['finaldia'],
             2,
             4.75,
@@ -164,7 +164,7 @@ class certificate_generator {
 
         $pdf->Rect(
             25,
-            203,
+            190,
             160,
             40
         );
