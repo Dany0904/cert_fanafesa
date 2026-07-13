@@ -76,6 +76,14 @@ echo html_writer::start_tag(
     ]
 );
 
+echo html_writer::empty_tag('input', [
+    'type' => 'text',
+    'id' => 'course-search',
+    'class' => 'form-control mb-3',
+    'placeholder' => get_string('searchcourseplaceholder', 'local_cert_fanafesa'),
+    'style' => 'max-width:700px'
+]);
+
 echo html_writer::select(
 
     $options,
@@ -92,6 +100,8 @@ echo html_writer::select(
     ],
 
     [
+
+        'id' => 'course-selector',
 
         'class' => 'form-control',
 
@@ -385,5 +395,44 @@ if ($courseid) {
         }
     }
 }
+
+$PAGE->requires->js_amd_inline("
+require([], function() {
+
+    const input = document.getElementById('course-search');
+    const select = document.getElementById('course-selector');
+
+    if (!input || !select) {
+        return;
+    }
+
+    const originalOptions = Array.from(select.options);
+
+    input.addEventListener('keyup', function() {
+
+        const value = this.value.toLowerCase().trim();
+        const current = select.value;
+
+        select.innerHTML = '';
+
+        originalOptions.forEach(function(option) {
+
+            if (
+                option.value === '0' ||
+                option.text.toLowerCase().includes(value)
+            ) {
+
+                select.appendChild(option.cloneNode(true));
+
+            }
+
+        });
+
+        select.value = current;
+
+    });
+
+});
+");
 
 echo $OUTPUT->footer();

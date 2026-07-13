@@ -77,3 +77,5 @@ $string['confirmsignerdelete'] = 'Are you sure you want to delete this signer?';
 $string['signerdeleted'] = 'Signer deleted successfully.';
 $string['signerinuse'] = 'This signer cannot be deleted because it is assigned to one or more courses.';
 $string['notassigned'] = 'Not assigned';
+$string['searchcourse'] = 'Search course';
+$string['searchcourseplaceholder'] = 'Type the course name...';

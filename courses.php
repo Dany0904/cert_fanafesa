@@ -311,6 +311,23 @@ echo html_writer::end_div();
 
 echo html_writer::end_div();
 
+echo html_writer::start_div('mb-3');
+
+echo html_writer::label(
+    get_string('searchcourse', 'local_cert_fanafesa'),
+    'course-search',
+    false,
+    ['class' => 'form-label']
+);
+
+echo html_writer::empty_tag('input', [
+    'type' => 'text',
+    'id' => 'course-search',
+    'class' => 'form-control',
+    'placeholder' => get_string('searchcourseplaceholder', 'local_cert_fanafesa')
+]);
+
+echo html_writer::end_div();
 
 echo html_writer::start_div(
 
@@ -333,7 +350,6 @@ echo html_writer::tag(
 );
 
 $table->attributes['class'] =
-
     'generaltable table-striped';
 
 echo html_writer::table(
@@ -369,5 +385,40 @@ echo html_writer::div(
     )
 
 );
+
+$PAGE->requires->js_amd_inline("
+require([], function() {
+
+    const table = document.querySelector('.generaltable');
+
+    if (table) {
+        table.id = 'courses-table';
+    }
+
+    const input = document.getElementById('course-search');
+
+    if (!input || !table) {
+        return;
+    }
+
+    const rows = table.querySelectorAll('tbody tr');
+
+    input.addEventListener('keyup', function() {
+
+        const value = this.value.toLowerCase().trim();
+
+        rows.forEach(function(row) {
+
+            const course = row.cells[0].textContent.toLowerCase();
+
+            row.style.display = course.includes(value)
+                ? ''
+                : 'none';
+        });
+
+    });
+
+});
+");
 
 echo $OUTPUT->footer();
