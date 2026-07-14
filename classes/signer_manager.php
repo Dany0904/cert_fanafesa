@@ -219,4 +219,137 @@ class signer_manager {
         return 'data:image/png;base64,' . base64_encode($content);
     }
 
+    public static function get_protected_signature_base64(
+        int $signerid,
+        string $fullname
+    ): ?string {
+
+        global $CFG;
+
+        $file = self::get_signature_file($signerid);
+
+        if (!$file) {
+            return null;
+        }
+
+        $content = $file->get_content();
+
+        $image = imagecreatefromstring($content);
+
+        if (!$image) {
+            return self::get_signature_base64($signerid);
+        }
+
+        $width  = imagesx($image);
+        $height = imagesy($image);
+
+        /*
+        * Mantener transparencia
+        */
+        imagesavealpha($image, true);
+
+        /*
+        * Fuente TrueType
+        */
+        $font = $CFG->dirroot .
+            '/local/cert_fanafesa/fonts/ARIALBD.TTF';
+
+        if (!file_exists($font)) {
+
+            $font = $CFG->dirroot .
+                '/local/cert_fanafesa/fonts/ARIAL.TTF';
+
+            if (!file_exists($font)) {
+                return self::get_signature_base64($signerid);
+            }
+        }
+
+        /*
+        * Gris oscuro con poca transparencia
+        * (0 = opaco, 127 = transparente)
+        */
+        $color = imagecolorallocatealpha(
+            $image,
+            85,
+            85,
+            85,
+            25
+        );
+
+        /*
+        * Tamaño inicial basado en el ancho.
+        * Esto hace que imágenes grandes comiencen con una fuente grande.
+        */
+        $fontsize = max(
+            18,
+            (int)($width * 0.18)
+        );
+
+        /*
+        * Reducir hasta que el texto ocupe aproximadamente el 95%
+        * del ancho disponible.
+        */
+        while ($fontsize > 12) {
+
+            $box = imagettfbbox(
+                $fontsize,
+                0,
+                $font,
+                $fullname
+            );
+
+            $textwidth = abs($box[2] - $box[0]);
+
+            if ($textwidth <= ($width * 0.95)) {
+                break;
+            }
+
+            $fontsize--;
+        }
+
+        /*
+        * Recalcular medidas
+        */
+        $box = imagettfbbox(
+            $fontsize,
+            0,
+            $font,
+            $fullname
+        );
+
+        $textwidth = abs($box[2] - $box[0]);
+        $textheight = abs($box[7] - $box[1]);
+
+        /*
+        * Centrar
+        */
+        $x = (int)(($width - $textwidth) / 2);
+        $y = (int)(($height + $textheight) / 2);
+
+        /*
+        * Escribir el nombre
+        */
+        imagettftext(
+            $image,
+            $fontsize,
+            0,
+            $x,
+            $y,
+            $color,
+            $font,
+            $fullname
+        );
+
+        ob_start();
+
+        imagepng($image);
+
+        $png = ob_get_clean();
+
+        imagedestroy($image);
+
+        return 'data:image/png;base64,' .
+            base64_encode($png);
+    }
+
 }

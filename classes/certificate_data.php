@@ -127,17 +127,26 @@ class certificate_data {
             // Firmas (URLs)
             'instructorsignature' =>
                 !empty($courseconfig->instructorid)
-                    ? signer_manager::get_signature_base64((int)$courseconfig->instructorid)
+                    ? signer_manager::get_protected_signature_base64(
+                        (int)$courseconfig->instructorid,
+                        $instructor->fullname ?? ''
+                    )
                     : '',
 
             'patronsignature' =>
                 !empty($courseconfig->patronid)
-                    ? signer_manager::get_signature_base64((int)$courseconfig->patronid)
+                    ? signer_manager::get_protected_signature_base64(
+                        (int)$courseconfig->patronid,
+                        $patron->fullname ?? ''
+                    )
                     : '',
 
             'workerssignature' =>
                 !empty($courseconfig->trabajadoresid)
-                    ? signer_manager::get_signature_base64((int)$courseconfig->trabajadoresid)
+                    ? signer_manager::get_protected_signature_base64(
+                        (int)$courseconfig->trabajadoresid,
+                        $trabajadores->fullname ?? ''
+                    )
                     : '',
 
             'companylogo' => $companyinfo['logo'],
