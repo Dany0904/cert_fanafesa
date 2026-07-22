@@ -90,3 +90,4 @@ function local_cert_fanafesa_before_footer() {
         ]
     );
 }
+

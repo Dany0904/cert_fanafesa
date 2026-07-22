@@ -113,7 +113,61 @@
 
               </KEYS>
 
-              </TABLE>
+        </TABLE>
+
+        <TABLE NAME="local_cert_fanafesa_download" COMMENT="Stores first certificate download per user and course">
+
+            <FIELDS>
+
+                <FIELD NAME="id"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       SEQUENCE="true"/>
+
+                <FIELD NAME="userid"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="courseid"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="firstdownload"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="timecreated"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+            </FIELDS>
+
+            <KEYS>
+
+                <KEY NAME="primary"
+                     TYPE="primary"
+                     FIELDS="id"/>
+
+            </KEYS>
+
+            <INDEXES>
+
+                <INDEX NAME="userid_courseid_uix"
+                       UNIQUE="true"
+                       FIELDS="userid, courseid"/>
+
+            </INDEXES>
+
+        </TABLE>
 
     </TABLES>
 

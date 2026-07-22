@@ -257,11 +257,21 @@ if ($courseid) {
                 ),
 
                 get_string(
+                    'firstdownload',
+                    'local_cert_fanafesa'
+                ),
+
+                get_string(
                     'certificate',
                     'local_cert_fanafesa'
                 )
 
             ];
+
+            $downloaddates =
+                \local_cert_fanafesa\download_manager::get_download_dates_by_course(
+                    $courseid
+                );
 
             foreach ($users as $user) {
 
@@ -283,6 +293,10 @@ if ($courseid) {
                         ]
 
                     );
+
+                $firstdownload = isset($downloaddates[$user->id])
+                    ? userdate($downloaddates[$user->id], '%d/%m/%Y')
+                    : '-';
 
                 $button = html_writer::link(
 
@@ -322,6 +336,8 @@ if ($courseid) {
                     $fullname,
 
                     $user->email,
+
+                    $firstdownload,
 
                     $button
 

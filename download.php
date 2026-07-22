@@ -64,6 +64,12 @@ if ($cmid) {
 
     $courseid = $course->id;
 
+    // Registrar únicamente la primera descarga del alumno.
+    \local_cert_fanafesa\download_manager::register_first_download(
+        $userid,
+        $courseid
+    );
+
 }
 
 /*

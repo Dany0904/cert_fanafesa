@@ -79,3 +79,5 @@ $string['signerinuse'] = 'No es posible eliminar el firmante porque está asigna
 $string['notassigned'] = 'Sin asignar';
 $string['searchcourse'] = 'Buscar curso';
 $string['searchcourseplaceholder'] = 'Escriba el nombre del curso...';
+$string['firstdownload'] = 'Primera descarga';
+$string['gotodashboard'] = 'Abrir panel de administración';

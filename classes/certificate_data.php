@@ -73,14 +73,27 @@ class certificate_data {
             $periodoinicio = date('d/m/Y', $ts);
 
         }
-
+        
         $periodofinal = '';
 
-        if (!empty($customfields['periodofinal'])) {
+        $firstdownload = download_manager::get_download_date(
+            $userid,
+            $courseid
+        );
 
-            $ts = (int)$customfields['periodofinal'];
+        if ($firstdownload !== null) {
 
-            $periodofinal = date('d/m/Y', $ts);
+            $periodofinal = date(
+                'd/m/Y',
+                $firstdownload
+            );
+
+        } else if (!empty($customfields['periodofinal'])) {
+
+            $periodofinal = date(
+                'd/m/Y',
+                (int)$customfields['periodofinal']
+            );
 
         }
 

@@ -79,3 +79,5 @@ $string['signerinuse'] = 'This signer cannot be deleted because it is assigned t
 $string['notassigned'] = 'Not assigned';
 $string['searchcourse'] = 'Search course';
 $string['searchcourseplaceholder'] = 'Type the course name...';
+$string['firstdownload'] = 'First download';
+$string['gotodashboard'] = 'Open administration panel';
